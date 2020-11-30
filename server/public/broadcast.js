@@ -1,7 +1,7 @@
 const peerConnections = {};
 const config = {
   iceServers: [
-    { 
+    {
       "urls": "stun:stun.l.google.com:19302",
     },
     // { 
@@ -62,13 +62,13 @@ videoSelect.onchange = getStream;
 
 getStream()
   .then(getDevices)
-  .then(gotDevices);
+  .then(handleDevices);
 
 function getDevices() {
   return navigator.mediaDevices.enumerateDevices();
 }
 
-function gotDevices(deviceInfos) {
+function handleDevices(deviceInfos) {
   window.deviceInfos = deviceInfos;
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement("option");
@@ -97,11 +97,11 @@ function getStream() {
   };
   return navigator.mediaDevices
     .getUserMedia(constraints)
-    .then(gotStream)
+    .then(handleStream)
     .catch(handleError);
 }
 
-function gotStream(stream) {
+function handleStream(stream) {
   window.stream = stream;
   audioSelect.selectedIndex = [...audioSelect.options].findIndex(
     option => option.text === stream.getAudioTracks()[0].label
