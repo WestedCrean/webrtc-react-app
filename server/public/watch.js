@@ -12,7 +12,7 @@ const config = {
   ]
 };
 
-const socket = io.connect(window.location.origin);
+const socket = io.connect(window.location.origin, { path: "/foo/bar"});
 const video = document.querySelector("video");
 const enableAudioButton = document.querySelector("#enable-audio");
 

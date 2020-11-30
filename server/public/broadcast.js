@@ -12,7 +12,7 @@ const config = {
   ]
 };
 
-const socket = io.connect(window.location.origin);
+const socket = io.connect(window.location.origin, { path: "/foo/bar" });
 
 socket.on("answer", (id, description) => {
   peerConnections[id].setRemoteDescription(description);
